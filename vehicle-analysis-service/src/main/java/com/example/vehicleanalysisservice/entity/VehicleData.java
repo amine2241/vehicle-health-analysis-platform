@@ -2,7 +2,7 @@ package com.example.vehicleanalysisservice.entity;
 
 import java.util.List;
 
-public record Vehicledata(
+public record VehicleData(
         String vin,
         int mileageKm,
         TirePressures tirePressures,
