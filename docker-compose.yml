@@ -1,0 +1,33 @@
+# I hardcoded the credentials here to make it easier to clone and run the project.
+# In a production environment, I would use environment variables or a secrets manager.
+
+services:
+
+  telemetry-db:
+    image: postgres:17
+    container_name: telemetry-db
+    environment:
+      POSTGRES_DB: telemetrydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - telemetry-data:/var/lib/postgresql/data
+
+  analysis-db:
+    image: postgres:17
+    container_name: analysis-db
+    environment:
+      POSTGRES_DB: analysisdb
+      
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - analysis-data:/var/lib/postgresql/data
+
+volumes:
+  telemetry-data:
+  analysis-data:
