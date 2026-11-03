@@ -23,7 +23,7 @@ public class HealthScoreCalculatorTest {
                 List.of()
         );
 
-        HealthReport report = calculator.calculate(vehicle);
+        HealthReportResponse report = calculator.calculate(vehicle);
 
         assertEquals(100, report.score());
         assertEquals(HealthStatus.HEALTHY, report.status());
@@ -43,7 +43,7 @@ public class HealthScoreCalculatorTest {
                 List.of(new Recall("R001", "Recall", true)) // -10
         );
 
-        HealthReport report = calculator.calculate(vehicle);
+        HealthReportResponse report = calculator.calculate(vehicle);
 
         assertEquals(37, report.score());
         assertEquals(HealthStatus.CRITICAL, report.status());

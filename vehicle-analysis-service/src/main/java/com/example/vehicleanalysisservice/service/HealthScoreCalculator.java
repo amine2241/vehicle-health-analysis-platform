@@ -1,14 +1,15 @@
 package com.example.vehicleanalysisservice.service;
 
-import com.example.vehicleanalysisservice.entity.HealthReport;
+import com.example.vehicleanalysisservice.entity.HealthReportResponse;
 import com.example.vehicleanalysisservice.entity.HealthStatus;
 import com.example.vehicleanalysisservice.entity.RuleResult;
 import com.example.vehicleanalysisservice.entity.VehicleData;
 import com.example.vehicleanalysisservice.service.scoring.*;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class HealthScoreCalculator {
     private final List<ScoringRule> rules;
 
@@ -24,7 +25,7 @@ public class HealthScoreCalculator {
         );
     }
 
-    public HealthReport calculate(VehicleData vehicle) {
+    public HealthReportResponse calculate(VehicleData vehicle) {
 
         int score = 100;
         List<String> alerts = new ArrayList<>();
@@ -49,7 +50,7 @@ public class HealthScoreCalculator {
             status = HealthStatus.CRITICAL;
         }
 
-        return new HealthReport(
+        return new HealthReportResponse(
                 vehicle.vin(),
                 score,
                 status,

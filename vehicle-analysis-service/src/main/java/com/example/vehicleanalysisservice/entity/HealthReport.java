@@ -1,14 +1,29 @@
 package com.example.vehicleanalysisservice.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public record HealthReport(
-        String vin,
-        int score,
-        HealthStatus status,
-        List<String> alerts
-) {
-    public HealthReport {
-        alerts = alerts == null ? List.of() : List.copyOf(alerts);
-    }
+@Entity
+@Table(name = "health_reports")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class HealthReport {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String vin;
+
+    private int score;
+
+    @Enumerated(EnumType.STRING)
+    private HealthStatus status;
+    private List<String> alerts = new ArrayList<>();
 }
+
