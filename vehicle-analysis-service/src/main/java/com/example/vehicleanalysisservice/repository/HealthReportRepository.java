@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface HealthReportRepository extends JpaRepository<HealthReport, Long> {
     Optional<HealthReport> findFirstByVinOrderByIdDesc(String vin);
+
+    List<HealthReport> findByVinOrderByIdDesc(String vin);
 }
