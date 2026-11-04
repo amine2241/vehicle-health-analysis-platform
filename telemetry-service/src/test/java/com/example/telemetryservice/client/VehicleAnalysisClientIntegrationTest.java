@@ -83,6 +83,17 @@ public class VehicleAnalysisClientIntegrationTest {
 
         Telemetry telemetry = new Telemetry();
         telemetry.setVin("VF123456789");
+        telemetry.setMileageKm(120000);
+
+        telemetry.setFrontLeftTirePressure(1.6);
+        telemetry.setFrontRightTirePressure(2.2);
+        telemetry.setRearLeftTirePressure(2.1);
+        telemetry.setRearRightTirePressure(2.2);
+
+        telemetry.setBatteryVoltage(11.8);
+        telemetry.setEngineTempCelsius(105);
+        telemetry.setFuelLevelPercent(8);
+        telemetry.setErrorCodes(List.of("P0301"));
 
         org.junit.jupiter.api.Assertions.assertThrows(
                 org.springframework.web.client.RestClientResponseException.class,

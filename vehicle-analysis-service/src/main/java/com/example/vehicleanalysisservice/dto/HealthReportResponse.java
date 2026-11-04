@@ -1,4 +1,6 @@
-package com.example.vehicleanalysisservice.entity;
+package com.example.vehicleanalysisservice.dto;
+
+import com.example.vehicleanalysisservice.entity.HealthStatus;
 
 import java.util.List;
 

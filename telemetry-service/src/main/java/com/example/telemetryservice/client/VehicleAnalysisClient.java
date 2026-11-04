@@ -1,5 +1,6 @@
 package com.example.telemetryservice.client;
 
+import com.example.telemetryservice.dto.VehicleDataRequest;
 import com.example.telemetryservice.entity.Telemetry;
 import com.example.telemetryservice.mapper.VehicleDataMapper;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,7 +1,7 @@
 package com.example.vehicleanalysisservice.service;
 
 import com.example.vehicleanalysisservice.client.RecallApiClient;
-import com.example.vehicleanalysisservice.entity.HealthReportResponse;
+import com.example.vehicleanalysisservice.dto.HealthReportResponse;
 import com.example.vehicleanalysisservice.entity.HealthReport;
 import com.example.vehicleanalysisservice.entity.Recall;
 import com.example.vehicleanalysisservice.entity.VehicleData;

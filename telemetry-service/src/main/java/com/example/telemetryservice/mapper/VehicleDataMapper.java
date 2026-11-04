@@ -1,6 +1,6 @@
 package com.example.telemetryservice.mapper;
 
-import com.example.telemetryservice.client.VehicleDataRequest;
+import com.example.telemetryservice.dto.VehicleDataRequest;
 import com.example.telemetryservice.entity.Telemetry;
 import org.springframework.stereotype.Component;
 

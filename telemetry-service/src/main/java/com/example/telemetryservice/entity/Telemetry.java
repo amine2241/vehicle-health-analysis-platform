@@ -1,34 +1,59 @@
 package com.example.telemetryservice.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "telemetry")
 public class Telemetry {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String vin;
 
-    private int mileageKm;
+    @NotNull
+    @PositiveOrZero
+    private Integer mileageKm;
 
-    private double frontLeftTirePressure;
-    private double frontRightTirePressure;
-    private double rearLeftTirePressure;
-    private double rearRightTirePressure;
+    @NotNull
+    @Positive
+    private Double frontLeftTirePressure;
 
-    private double batteryVoltage;
+    @NotNull
+    @Positive
+    private Double frontRightTirePressure;
 
-    private int engineTempCelsius;
+    @NotNull
+    @Positive
+    private Double rearLeftTirePressure;
 
-    private int fuelLevelPercent;
+    @NotNull
+    @Positive
+    private Double rearRightTirePressure;
+
+    @NotNull
+    @Positive
+    private Double batteryVoltage;
+
+    @NotNull
+    @PositiveOrZero
+    private Integer engineTempCelsius;
+
+    @NotNull
+    @Min(0)
+    @Max(100)
+    private Integer fuelLevelPercent;
+
     @ElementCollection
     private List<String> errorCodes = new ArrayList<>();
 }

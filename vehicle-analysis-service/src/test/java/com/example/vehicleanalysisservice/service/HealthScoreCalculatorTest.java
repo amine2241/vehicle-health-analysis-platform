@@ -1,5 +1,6 @@
 package com.example.vehicleanalysisservice.service;
 
+import com.example.vehicleanalysisservice.dto.HealthReportResponse;
 import com.example.vehicleanalysisservice.entity.*;
 import org.junit.jupiter.api.Test;
 

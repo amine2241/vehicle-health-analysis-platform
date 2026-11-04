@@ -1,7 +1,6 @@
 package com.example.vehicleanalysisservice.controller;
 
-import com.example.vehicleanalysisservice.entity.HealthReport;
-import com.example.vehicleanalysisservice.entity.HealthReportResponse;
+import com.example.vehicleanalysisservice.dto.HealthReportResponse;
 import com.example.vehicleanalysisservice.entity.VehicleData;
 import com.example.vehicleanalysisservice.service.VehicleAnalysisService;
 import org.springframework.http.ResponseEntity;

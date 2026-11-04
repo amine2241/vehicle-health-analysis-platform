@@ -1,4 +1,4 @@
-package com.example.telemetryservice.client;
+package com.example.telemetryservice.dto;
 
 import java.util.List;
 
