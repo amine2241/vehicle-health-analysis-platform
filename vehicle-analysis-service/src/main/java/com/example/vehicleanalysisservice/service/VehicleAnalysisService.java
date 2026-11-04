@@ -47,6 +47,7 @@ public class VehicleAnalysisService {
         healthReport.setVin(healthReportResponse.vin());
         healthReport.setScore(healthReportResponse.score());
         healthReport.setStatus(healthReportResponse.status());
+        healthReport.setAlerts(healthReportResponse.alerts());
 
         healthReportRepository.save(healthReport);
 
