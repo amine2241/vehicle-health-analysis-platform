@@ -6,7 +6,7 @@ This is my solution to the Renault vehicle health use case assignment. It's two 
 
 1. A vehicle sends its data to `POST /api/v1/telemetry`. I don't have a real car, so I simulate it with curl and with tests (example below).
 2. The telemetry service saves the data and answers `202 Accepted` right away. The analysis happens in the background, so the car never waits for it.
-3. The vehicle analysis service asks an external API for the vehicle's recall campaigns (it returns an empty list because I don't have an external API), calculates the health score, and saves the report.
+3. The Vehicle Analysis Service integrates with an external API to retrieve vehicle recall campaigns. Since a real recall provider is not configured, the application currently falls back to an empty recall list.
 4. Anyone can then read the report and the alerts through the API.
 
 ## Choices I made
@@ -52,14 +52,14 @@ docker compose up -d
 3. Start the telemetry service:
 
 ```bash
-cd telemetryservice
+cd telemetry-service/
 ./mvnw spring-boot:run
 ```
 
 4. In another terminal, start the vehicle analysis service:
 
 ```bash
-cd vehicleanalysisservice
+cd vehicle-analysis-service/
 ./mvnw spring-boot:run
 ```
 
@@ -116,3 +116,4 @@ Run everything with:
 - Replace the async REST call with a message broker like kafka, and add retries.
 - Put both services in Docker container, so one command starts the whole platform.
 - Add more validation tests for bad values (negative mileage, fuel over 100%, wrong VIN format).
+- Add more comments for readability
