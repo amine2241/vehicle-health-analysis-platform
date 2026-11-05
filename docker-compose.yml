@@ -1,8 +1,5 @@
-# I hardcoded the credentials here to make it easier to clone and run the project.
-# In a production environment, I would use environment variables or a secrets manager.
 
 services:
-
   telemetry-db:
     image: postgres:17
     container_name: telemetry-db
@@ -20,13 +17,38 @@ services:
     container_name: analysis-db
     environment:
       POSTGRES_DB: analysisdb
-      
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5434:5432"
     volumes:
       - analysis-data:/var/lib/postgresql/data
+
+  telemetry-service:
+    image: telemetry-service:1.0
+    container_name: telemetry-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://telemetry-db:5432/telemetrydb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      VEHICLE_ANALYSIS_API_BASE_URL: http://vehicle-analysis-service:8082
+    depends_on:
+      - telemetry-db
+      - vehicle-analysis-service
+
+  vehicle-analysis-service:
+    image: vehicle-analysis-service:1.0
+    container_name: vehicle-analysis-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://analysis-db:5432/analysisdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - analysis-db
 
 volumes:
   telemetry-data:
