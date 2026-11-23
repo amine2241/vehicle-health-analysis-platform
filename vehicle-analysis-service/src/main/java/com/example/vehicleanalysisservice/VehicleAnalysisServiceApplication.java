@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class VehicleAnalysisServiceApplication {
+//testing ci/cd
 
     public static void main(String[] args) {
         SpringApplication.run(VehicleAnalysisServiceApplication.class, args);
