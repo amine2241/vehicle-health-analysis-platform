@@ -14,6 +14,26 @@ jobs:
     name: Test Telemetry Service
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: telemetry_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d telemetry_db"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5433/telemetry_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,6 +52,26 @@ jobs:
   vehicle-analysis-service:
     name: Test Vehicle Analysis Service
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: analysis_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5434:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d analysis_db"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5434/analysis_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
 
     steps:
       - name: Checkout repository
